@@ -1,0 +1,18 @@
+log:
+  disable_sentry: true
+  level: debug
+
+listener:
+  addr: :80
+
+db:
+  url: "postgres://postgres:postgres@localhost:5432/broadcaster?sslmode=disable"
+
+key:
+  sender_prv_hex: ""
+  chain_id: "rarimo-core"
+  coin_name: "stake"
+  gas_limit: 1000000
+
+cosmos:
+  addr: "localhost:9090"

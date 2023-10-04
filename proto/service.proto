@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/rarimo/broadcaster-svc/internal/services/grpc";
+
+//import "gogoproto/gogo.proto";
+//import "github.com/cosmos/cosmos-sdk/proto/cosmos/tx/v1beta1/tx.proto";
+//import "github.com/cosmos/cosmos-sdk/proto/cosmos/crypto/multisig/v1beta1/multisig.proto";
+//import "github.com/cosmos/cosmos-sdk/proto/cosmos/base/v1beta1/coin.proto";
+//import "github.com/cosmos/cosmos-sdk/proto/cosmos/tx/signing/v1beta1/signing.proto";
+//import "google/protobuf/any.proto";
+//import "cosmos_proto/cosmos.proto";
+
+service Broadcaster {
+  rpc ScheduleBroadcastTx(ScheduleBroadcastTxRequest) returns (ScheduleBroadcastTxResponse);
+}
+
+message ScheduleBroadcastTxRequest {
+  bytes tx = 1;
+}
+
+message ScheduleBroadcastTxResponse {}
