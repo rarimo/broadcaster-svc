@@ -9,7 +9,7 @@ require (
 	github.com/ethereum/go-ethereum v1.10.26
 	github.com/gogo/protobuf v1.3.3
 	github.com/ignite/cli v0.26.1
-	github.com/rarimo/rarimo-core v1.0.8-0.20231107191012-470dd204b863
+	github.com/rarimo/rarimo-core v1.0.7-0.20231123231906-566dc0033e75
 	github.com/rubenv/sql-migrate v1.2.0
 	gitlab.com/distributed_lab/figure v2.1.0+incompatible
 	gitlab.com/distributed_lab/kit v1.11.1
