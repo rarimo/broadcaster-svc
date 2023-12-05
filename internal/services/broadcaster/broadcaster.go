@@ -3,8 +3,9 @@ package broadcaster
 import (
 	"context"
 	"fmt"
-	"gitlab.com/distributed_lab/logan/v3"
 	"time"
+
+	"gitlab.com/distributed_lab/logan/v3"
 
 	sdkclient "github.com/cosmos/cosmos-sdk/client"
 	clienttx "github.com/cosmos/cosmos-sdk/client/tx"
@@ -81,7 +82,11 @@ func (t *broadcaster) runOnceIndexing(ctx context.Context) error {
 
 		gasUsed, err := t.simulateTx(ctx, tx)
 		if err != nil {
-			return errors.Wrap(err, "failed to simulate tx")
+			log.WithError(err).Error("Failed to simulate tx")
+
+			if err = t.deleteTx(ctx, log, &txRaw); err != nil {
+				return err
+			}
 		}
 
 		gasLimit := ApproximateGasLimit(gasUsed)
@@ -94,13 +99,11 @@ func (t *broadcaster) runOnceIndexing(ctx context.Context) error {
 			return errors.Wrap(err, "failed to generate tx after simulation")
 		}
 
-		err = t.broadcastTx(ctx, tx)
-		if err != nil {
+		if err = t.broadcastTx(ctx, tx); err != nil {
 			log.WithError(err).Error("Failed to broadcast tx")
 		}
 
-		err = t.deleteTx(ctx, log, &txRaw)
-		if err != nil {
+		if err = t.deleteTx(ctx, log, &txRaw); err != nil {
 			return err
 		}
 	}
